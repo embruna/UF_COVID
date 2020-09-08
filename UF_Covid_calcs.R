@@ -69,6 +69,10 @@ UF_data$group<-paste(UF_data$program,UF_data$category)
 UF_data<-arrange(UF_data,group, date)
 
 
+###################
+# FIGURES
+###################
+
 # Daily positivity rate
 UF.plot_daily<-ggplot(data=UF_data, aes(x=date, y=daily.pos, color=group)) +
   geom_line() +
