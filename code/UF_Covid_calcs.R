@@ -19,7 +19,19 @@ scrape <- list.files(folder,   # Identify all csv files in folder
   bind_rows %>%                                                     # Combine data sets into one data set 
   arrange(testing_program,group,value,update_date) %>% 
   select(-X1)
-scrape
+# one<-as.data.frame(scrape[1])
+# one<-one %>% select(-X1) 
+# corrected_date<-str_split(one$scrape_date,"/")
+# corrected_date<-data.frame(matrix(unlist(corrected_date), nrow=length(corrected_date), byrow=T))
+# corrected_date$X3<-2020
+# corrected_date$X1<-paste(0,corrected_date$X1,sep="")
+# corrected_date$X2<-as.numeric(as.character(corrected_date$X2))
+# corrected_date <- corrected_date %>% 
+#   mutate(X2=ifelse(X2<10,paste(0,X2,sep=""),X2)) %>% 
+#   mutate(correct_date=paste(X3,X1,X2,sep="-"))
+# corrected_date<-as.Date(corrected_date$correct_date)
+# one$scrape_date<-corrected_date
+# write_csv(one,"./data_raw/daily_scrape/UF_covid_data_2020-09-08.csv")
 
 ############################################################
 # read in some data collected before starting to scrape
@@ -36,7 +48,7 @@ corrected_date$X1<-paste(0,corrected_date$X1,sep="")
 corrected_date$X2<-as.numeric(as.character(corrected_date$X2))
 corrected_date <- corrected_date %>% 
   mutate(X2=ifelse(X2<10,paste(0,X2,sep=""),X2)) %>% 
-  mutate(correct_date<-paste(X3,X1,X2,sep="-"))
+  mutate(correct_date=paste(X3,X1,X2,sep="-"))
 corrected_date<-as.Date(corrected_date$correct_date)
 archive$update_date<-corrected_date
 
@@ -129,7 +141,7 @@ UF.plot_daily <- ggplot(
   scale_color_brewer(palette = "Dark2") +
   geom_text(aes(label = round(daily.pos, 1)), hjust = 0, vjust = -1, show.legend = FALSE) +
   labs(x = "Date", y = "Percent") +
-  labs(title = "Positive Tests Per Day (%)")
+  labs(title = "UF - Positive Tests Per Day (%)")
 UF.plot_daily <- UF.plot_daily + theme_classic() +
   theme(
     legend.title = element_blank(),
