@@ -97,6 +97,8 @@ uf.data<-bind_rows(uf.data.RTC.s,uf.data.RTC.fs,uf.data.SHC.s) %>%
   mutate(cmtv.perc.pos=Npos/Ntest*100) 
 uf.data<-arrange(uf.data,group,update_date)
 
+#save as a csv file with the date 
+write_csv(uf.data,paste("./data_clean/UFcovid_data_",Sys.Date(),".csv",sep=""))
 
 ############################################################
 # GRAPHS
