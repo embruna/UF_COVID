@@ -19,19 +19,7 @@ scrape <- list.files(folder,   # Identify all csv files in folder
   bind_rows %>%                                                     # Combine data sets into one data set 
   arrange(testing_program,group,value,update_date) %>% 
   select(-X1)
-# one<-as.data.frame(scrape[1])
-# one<-one %>% select(-X1) 
-# corrected_date<-str_split(one$scrape_date,"/")
-# corrected_date<-data.frame(matrix(unlist(corrected_date), nrow=length(corrected_date), byrow=T))
-# corrected_date$X3<-2020
-# corrected_date$X1<-paste(0,corrected_date$X1,sep="")
-# corrected_date$X2<-as.numeric(as.character(corrected_date$X2))
-# corrected_date <- corrected_date %>% 
-#   mutate(X2=ifelse(X2<10,paste(0,X2,sep=""),X2)) %>% 
-#   mutate(correct_date=paste(X3,X1,X2,sep="-"))
-# corrected_date<-as.Date(corrected_date$correct_date)
-# one$scrape_date<-corrected_date
-# write_csv(one,"./data_raw/daily_scrape/UF_covid_data_2020-09-08.csv")
+scrape$data_source<-"scrape"
 
 ############################################################
 # read in some data collected before starting to scrape
@@ -51,11 +39,30 @@ corrected_date <- corrected_date %>%
   mutate(correct_date=paste(X3,X1,X2,sep="-"))
 corrected_date<-as.Date(corrected_date$correct_date)
 archive$update_date<-corrected_date
+archive$data_source<-"ggsheet"
 
+############################################################
+# read in some data collected before starting to scrape
+############################################################
+
+missing_days<-read_csv("./data_raw/SKME.csv")
+corrected_date<-str_split(missing_days$scrape_date,"/")
+corrected_date<-data.frame(matrix(unlist(corrected_date), nrow=length(corrected_date), byrow=T))
+corrected_date$X3<-2020
+corrected_date$X1<-paste(0,corrected_date$X1,sep="")
+corrected_date$X2<-as.numeric(as.character(corrected_date$X2))
+corrected_date <- corrected_date %>% 
+  mutate(X2=ifelse(X2<10,paste(0,X2,sep=""),X2)) %>% 
+  mutate(correct_date=paste(X3,X1,X2,sep="-"))
+missing_days$scrape_date<-corrected_date$correct_date
+missing_days$update_date<-corrected_date$correct_date
+missing_days$scrape_date<-as.Date(missing_days$scrape_date)
+missing_days$update_date<-as.Date(missing_days$update_date)
+missing_days$data_source<-"sk"
 ############################################################
 # bind them up, split by group, and clean up titles, etc. 
 ############################################################
-uf.data<-bind_rows(archive,scrape)
+uf.data<-bind_rows(archive,scrape,missing_days)
 
 
 
@@ -68,12 +75,13 @@ uf.data<-bind_rows(archive,scrape)
 
 
 uf.data.SHC.s<-uf.data %>% 
-  select(update_date,testing_program,group,value.2,N) %>% 
+  select(data_source,update_date,testing_program,group,value.2,N) %>% 
   filter(testing_program=="SHCC") %>%
   spread(value.2,N) %>% 
   select(-S.percpos.SHC) %>% 
   arrange(update_date) %>% 
   rename(Npos=S.pos.SHC,Ntest=S.test.SHC)
+
 
 
 uf.data.RTC.fs<-uf.data %>% 
