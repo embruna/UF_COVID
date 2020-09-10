@@ -46,4 +46,10 @@ UF.plot.daily.tests(uf.data)
 ```
 
 
+\newline
+```{r cumulative.pos.fig, message=FALSE,warning=FALSE,echo=FALSE}
+source("./code/UF.plot.cumul.pos.R")
+UF.plot.cumul.pos(uf.data)
+```
+
 

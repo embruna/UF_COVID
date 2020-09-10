@@ -75,7 +75,7 @@ uf.data<-bind_rows(archive,scrape,missing_days)
 
 
 uf.data.SHC.s<-uf.data %>% 
-  select(data_source,update_date,testing_program,group,value.2,N) %>% 
+  select(update_date,testing_program,group,value.2,N) %>% 
   filter(testing_program=="SHCC") %>%
   spread(value.2,N) %>% 
   select(-S.percpos.SHC) %>% 
