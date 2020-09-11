@@ -24,18 +24,19 @@ UF.plot.cumul.pos<-function(uf.data) {
       x = update_date,
       y = Npos,
       color = paste(testing_program, group, sep = " "))) +
-    scale_x_date(date_breaks = "1 day", date_labels = "%b %d") +
+    scale_x_date(date_breaks = "1 day", date_labels = "%b %d",expand = c(0, .9)) +
     # scale_x_date(date_minor_breaks = "3 day")+
     geom_line() +
-    geom_line(data = filter(gaps, group == "fac.staff" & testing_program == "RTC"), aes(group = gap.group), linetype = "dashed") +
-    geom_line(data = filter(gaps, group == "students" & testing_program == "RTC"), aes(group = gap.group), linetype = "dashed") +
-    geom_line(data = filter(gaps, group == "students" & testing_program == "SHCC"), aes(group = gap.group), linetype = "dashed") +
+    geom_line(data = filter(my_data, is.na(Npos)==FALSE), linetype = "dashed") +
+    # geom_line(data = filter(gaps, group == "fac.staff" & testing_program == "RTC"), aes(group = gap.group), linetype = "dashed") +
+    # geom_line(data = filter(gaps, group == "students" & testing_program == "RTC"), aes(group = gap.group), linetype = "dashed") +
+    # geom_line(data = filter(gaps, group == "students" & testing_program == "SHCC"), aes(group = gap.group), linetype = "dashed") +
     geom_point() +
     scale_shape_manual(values = c(21, 21, 21)) +
     scale_color_brewer(palette = "Dark2") +
-    geom_text(aes(label = round(Npos, 1)), hjust = 0, vjust = -1, show.legend = FALSE) +
+    geom_text(aes(label = round(Npos, 1)), hjust = .6, vjust = -1, show.legend = FALSE) +
     labs(x = "Date", y = "Cumulative Count") +
-    scale_y_continuous(limits = c(0, 300),breaks = seq(0,300, by=20),expand=c(0,0.1))+
+    scale_y_continuous(limits = c(0, 400),breaks = seq(0,400, by=20),expand=c(0,0.1))+
     labs(title = "UF - Cumulative Positive Tests (Reported)")
   UF.plot.cumul.pos <- UF.plot.cumul.pos + theme_classic() +
     theme(

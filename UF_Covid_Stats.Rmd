@@ -1,13 +1,9 @@
 ---
 title: "UF Covid Summary"
-author: "Emilio M. Bruna"
-date: "9/10/2020"
+# author: "Emilio M. Bruna"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: html_document
 ---
-
-### The data used to generate these figures were extracted from [the UF Covid Dashboard](https://coronavirus.ufhealth.org/screen-test-protect-2/about-initiative/testing-dashboard/). All code and data can be found [here](https://github.com/embruna/UF_COVID).
-
-
 
 
 ```{r setup, include=FALSE}
@@ -31,6 +27,7 @@ library(RColorBrewer)
 todays.data<-paste("./data_clean/UFcovid_data_",Sys.Date(),".csv",sep="")
 uf.data<-read.csv(todays.data)
 uf.data$update_date<-as.Date(uf.data$update_date)
+
 ```
 \newline
 
@@ -53,3 +50,5 @@ UF.plot.cumul.pos(uf.data)
 ```
 
 
+
+### The data used to generate these figures were extracted from [the UF Covid Dashboard](https://coronavirus.ufhealth.org/screen-test-protect-2/about-initiative/testing-dashboard/). All code and data can be found [here](https://github.com/embruna/UF_COVID).
