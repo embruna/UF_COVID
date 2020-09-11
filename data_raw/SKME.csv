@@ -1,0 +1,17 @@
+scrape_date,scrape_time,update_date,testing_program,group,value,value.2,N
+8/23/20,,,RTC,students,Students Tested (Without Symptoms),S.test.RTC,9896
+8/23/20,,,RTC,students,Students Positive (Without Symptoms),S.pos.RTC,45
+8/23/20,,,SHCC,students,Students With or Without Symptoms Tested for COVID-19,S.test.SHC,1002
+8/23/20,,,SHCC,students,Students With or Without Symptoms Confirmed as Positive,S.pos.SHC,193
+8/24/20,,,RTC,students,Students Tested (Without Symptoms),S.test.RTC,9902
+8/24/20,,,RTC,students,Students Positive (Without Symptoms),S.pos.RTC,45
+8/24/20,,,SHCC,students,Students With or Without Symptoms Tested for COVID-19,S.test.SHC,1002
+8/24/20,,,SHCC,students,Students With or Without Symptoms Confirmed as Positive,S.pos.SHC,193
+8/26/20,,,RTC,students,Students Tested (Without Symptoms),S.test.RTC,10025
+8/26/20,,,RTC,students,Students Positive (Without Symptoms),S.pos.RTC,46
+8/26/20,,,SHCC,students,Students With or Without Symptoms Tested for COVID-19,S.test.SHC,1002
+8/26/20,,,SHCC,students,Students With or Without Symptoms Confirmed as Positive,S.pos.SHC,193
+8/27/20,,,RTC,students,Students Tested (Without Symptoms),S.test.RTC,10472
+8/27/20,,,RTC,students,Students Positive (Without Symptoms),S.pos.RTC,48
+8/27/20,,,SHCC,students,Students With or Without Symptoms Tested for COVID-19,S.test.SHC,1019
+8/27/20,,,SHCC,students,Students With or Without Symptoms Confirmed as Positive,S.pos.SHC,194
