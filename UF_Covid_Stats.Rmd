@@ -1,25 +1,20 @@
 ---
 title: "UF Covid Summary"
-# author: "Emilio M. Bruna"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
+# output: pdf_document
 output: html_document
 ---
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(gridExtra)
-library(kableExtra)
+# library(kableExtra)
 # library(readr)
 library(egg)
-# library(magick)
-# library(citr)
 library(rvest)
 library(RColorBrewer)
 ```
-
-
 
 ```{r LoadData, echo=FALSE,message = FALSE,cache=TRUE}
 
@@ -34,6 +29,7 @@ uf.data$update_date<-as.Date(uf.data$update_date)
 ```{r daily.pos.fig, message=FALSE, warning=FALSE, echo=FALSE}
 source("./code/UF.plot.daily.R")
 UF.plot.daily(uf.data)
+
 ```
 
 \newline
@@ -48,7 +44,5 @@ UF.plot.daily.tests(uf.data)
 source("./code/UF.plot.cumul.pos.R")
 UF.plot.cumul.pos(uf.data)
 ```
-
-
 
 ### The data used to generate these figures were extracted from [the UF Covid Dashboard](https://coronavirus.ufhealth.org/screen-test-protect-2/about-initiative/testing-dashboard/). All code and data can be found [here](https://github.com/embruna/UF_COVID).

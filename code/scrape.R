@@ -1,19 +1,21 @@
+scrape<-function(UF_covid_page) {
+
 ####################################################################################
 # Script to scrape data from UF Covid webiste and save day's results as a csv file
 ####################################################################################
 library(tidyverse)
 library(rvest)
-
-UF_covid_page <- "https://coronavirus.ufhealth.org/screen-test-protect-2/about-initiative/testing-dashboard"
+UF_covid_page <- UF_covid_page
+# UF_covid_page <- "https://coronavirus.ufhealth.org/screen-test-protect-2/about-initiative/testing-dashboard"
 UF_covid <- read_html(UF_covid_page)
 UF_covid
-str(UF_covid)
+# str(UF_covid)
 
-body_nodes <- UF_covid %>% 
-  html_node("body") %>% 
-  html_children()
-body_nodes %>% html_children()
-xml_find_all(UF_covid)
+# body_nodes <- UF_covid %>% 
+#   html_node("body") %>% 
+#   html_children()
+# body_nodes %>% html_children()
+# xml_find_all(UF_covid)
 
 numbers<-UF_covid %>% 
   rvest::html_nodes('body') %>% 
@@ -83,3 +85,6 @@ UF_web_data$update_date<-corrected_date
 
 # Save as a CSV
 write.csv(UF_web_data,paste("./data_raw/daily_scrape/UF_covid_data_",Sys.Date(),".csv",sep=""))
+UF_web_data<-as.data.frame(UF_web_data)
+return(UF_web_data)
+}

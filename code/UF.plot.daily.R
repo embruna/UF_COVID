@@ -8,7 +8,7 @@ my_data<-uf.data %>%
   group_by(testing_program,group) %>% 
   mutate(keep=ifelse(is.na(daily.pos)&lag(is.na(daily.pos)==TRUE),"del","keep")) %>% 
   arrange(testing_program,group,update_date) %>% 
-  filter(keep=="keep") 
+  filter(keep=="keep")
          
 gaps <- my_data %>%
   arrange(testing_program,group,update_date) %>% 
@@ -27,6 +27,7 @@ UF.plot.daily <- ggplot(
     x = update_date,
     y = daily.pos,
     color = paste(testing_program, group, sep = " "))) +
+  # scale_x_date(date_breaks = "1 day", date_labels = "%b %d") +
   scale_x_date(date_breaks = "1 day", date_labels = "%b %d",expand = c(0, .9)) +
   # scale_x_date(date_minor_breaks = "3 day")+
   geom_line() +

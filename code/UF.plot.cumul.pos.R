@@ -8,7 +8,7 @@ UF.plot.cumul.pos<-function(uf.data) {
     group_by(testing_program,group) %>% 
     mutate(keep=ifelse(is.na(Npos)&lag(is.na(Npos)==TRUE),"del","keep")) %>% 
     arrange(testing_program,group,update_date) %>% 
-    filter(keep=="keep")
+    filter(keep=="keep") 
   
   gaps <- my_data %>%
     arrange(testing_program,group,update_date) %>% 
@@ -24,9 +24,11 @@ UF.plot.cumul.pos<-function(uf.data) {
       x = update_date,
       y = Npos,
       color = paste(testing_program, group, sep = " "))) +
+    # scale_x_date(date_breaks = "1 day", date_labels = "%b %d") +
     scale_x_date(date_breaks = "1 day", date_labels = "%b %d",expand = c(0, .9)) +
     # scale_x_date(date_minor_breaks = "3 day")+
     geom_line() +
+    # geom_line(data = filter(my_data, testing_program=="RTC" & group=="students")) +
     geom_line(data = filter(my_data, is.na(Npos)==FALSE), linetype = "dashed") +
     # geom_line(data = filter(gaps, group == "fac.staff" & testing_program == "RTC"), aes(group = gap.group), linetype = "dashed") +
     # geom_line(data = filter(gaps, group == "students" & testing_program == "RTC"), aes(group = gap.group), linetype = "dashed") +

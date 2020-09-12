@@ -29,6 +29,7 @@ UF.plot.daily.tests<-function(uf.data) {
       y = new.tests,
       color = paste(testing_program, group, sep = " "))) +
     scale_x_date(date_breaks = "1 day", date_labels = "%b %d",expand = c(0, .9)) +
+    # scale_x_date(date_breaks = "1 day", date_labels = "%b %d") +
     # scale_x_date(date_minor_breaks = "3 day")+
     geom_line() +
     geom_line(data = filter(my_data_daily_tests, is.na(new.tests)==FALSE), linetype = "dashed") +
