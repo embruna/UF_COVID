@@ -3,55 +3,80 @@ UF.plot.cumul.pos<-function(uf.data) {
   # becauser there are some days with no data (weekends, etc)
   # there will be breaks in the line. This patches the breaks with a 
   # dashed line
-  my_data<-uf.data %>%
-    arrange(testing_program,group,update_date) %>% 
-    group_by(testing_program,group) %>% 
-    mutate(keep=ifelse(is.na(Npos)&lag(is.na(Npos)==TRUE),"del","keep")) %>% 
-    arrange(testing_program,group,update_date) %>% 
-    filter(keep=="keep") 
+  # 
+  # my_data<-uf.data %>%
+  #   arrange(testing_program,group,update_date) %>% 
+  #   group_by(testing_program,group) %>% 
+  #   mutate(keep=ifelse(is.na(Npos)&lag(is.na(Npos)==TRUE),"del","keep")) %>% 
+  #   arrange(testing_program,group,update_date) %>% 
+  #   filter(keep=="keep") %>% 
+  #   mutate(keep=ifelse(is.na(Npos)&lag(is.na(Npos)==TRUE),"del","keep")) %>% 
+  #   arrange(testing_program,group,update_date) %>% 
+  #   filter(keep=="keep") 
   
-  gaps <- my_data %>%
-    arrange(testing_program,group,update_date) %>% 
-    group_by(testing_program,group) %>%
-    filter(is.nan(lead(Npos)) & row_number() != n() |
-             is.nan(lag(Npos)) & row_number() != 1) %>%
-    mutate(gap.group = cumsum(row_number() %% 2)) 
+  #   scale_color_brewer(palette = "Blues") +
+  #   scale_fill_manual(values = c("#6C9AC3", "#A8DCD9", "#E28F41"))+
   
+  # gaps <- my_data %>%
+  #   arrange(testing_program,group,update_date) %>% 
+  #   group_by(testing_program,group) %>%
+  #   filter(is.nan(lead(Npos)) & row_number() != n() |
+  #            is.nan(lag(Npos)) & row_number() != 1) %>%
+  #   mutate(gap.group = cumsum(row_number() %% 2)) 
+  # 
+  
+  my_data<-uf.data
   # The plot
-  UF.plot.cumul.pos <- ggplot(
+  PlotCumm <- ggplot(
     data = my_data,
     mapping = aes(
       x = update_date,
       y = Npos,
-      color = paste(testing_program, group, sep = " "))) +
-    # scale_x_date(date_breaks = "1 day", date_labels = "%b %d") +
-    scale_x_date(date_breaks = "1 day", date_labels = "%b %d",expand = c(0, .9)) +
-    # scale_x_date(date_minor_breaks = "3 day")+
+      color=cat,
+      shape=cat))+
+      # color = paste(testing_program, group, sep = " "),
+      # shape = paste(testing_program, group, sep = " "))) +
+      # scale_x_date(date_breaks = "1 day", date_labels = "%b %d") +
+    scale_x_date(date_breaks = "1 day", date_labels = "%b %d",expand = c(.02, .09)) +
     geom_line() +
     # geom_line(data = filter(my_data, testing_program=="RTC" & group=="students")) +
     geom_line(data = filter(my_data, is.na(Npos)==FALSE), linetype = "dashed") +
+    scale_shape_manual(values = c(15, 16, 17,18)) +
+    scale_color_manual(values = c("gray65","gray65","gray65","darkred"))+
+    # scale_color_manual(values = c("blue4","coral3", "darkred"))+
     # geom_line(data = filter(gaps, group == "fac.staff" & testing_program == "RTC"), aes(group = gap.group), linetype = "dashed") +
     # geom_line(data = filter(gaps, group == "students" & testing_program == "RTC"), aes(group = gap.group), linetype = "dashed") +
     # geom_line(data = filter(gaps, group == "students" & testing_program == "SHCC"), aes(group = gap.group), linetype = "dashed") +
-    geom_point() +
-    scale_shape_manual(values = c(21, 21, 21)) +
-    scale_color_brewer(palette = "Dark2") +
-    geom_text(aes(label = round(Npos, 1)), hjust = .6, vjust = -1, show.legend = FALSE) +
+    geom_point(size=3) +
+    geom_text(data = filter(my_data,cat=="UF Total"), aes(label = round(Npos, 1)), hjust = .9, vjust = -.7, size=8,show.legend = FALSE) +
+    geom_text(data = filter(my_data,cat!="UF Total"), aes(label = round(Npos, 1)), hjust = .6, vjust = -1, size=6,show.legend = FALSE) +
+    # geom_text(aes(label = round(Npos, 1)), hjust = .6, vjust = -1, size=8,show.legend = FALSE) +
+    # geom_text(aes(label = group), hjust = 1, vjust = -1, size=5) +
+    # geom_text(data = filter(my_data, update_date==max(update_date)), aes(label=label), 
+    #            nudge_x = -0.4, nudge_y=35, size=5, fontface="bold",show.legend = FALSE) +
+    geom_text(data = filter(my_data, ((update_date==max(update_date) & cat=="UF Total"))), aes(label=cat),
+              nudge_x = -0.2, nudge_y=40, size=10,fontface="bold",show.legend = FALSE) +
+    geom_text(data = filter(my_data, ((update_date==max(update_date) & cat!="UF Total"))), aes(label=cat),
+              nudge_x = -0.1, nudge_y=40, size=6,show.legend = FALSE) +
     labs(x = "Date", y = "Cumulative Count") +
-    scale_y_continuous(limits = c(0, 400),breaks = seq(0,400, by=20),expand=c(0,0.1))+
+    scale_y_continuous(limits = c(0, 800),breaks = seq(0,800, by=50),expand=c(0,0.2))+
     labs(title = "UF - Cumulative Positive Tests (Reported)")
-  UF.plot.cumul.pos <- UF.plot.cumul.pos + theme_classic() +
+  
+  PlotCumm <- PlotCumm + theme_classic() +
     theme(
       legend.title = element_blank(),
-      legend.position = c(0.2, 0.9),
+      # legend.position = c(0.2, 0.9),
+      legend.position = "none",
       axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
       axis.text.y = element_text(size = 12),
       axis.title.x = element_text(colour = "black", size = 16),
       axis.title.y = element_text(colour = "black", size = 16),
-      plot.title = element_text(size = 16),
-      plot.margin =unit(c(1,1,1,1), "lines"),  
-      legend.text = element_text(colour = "black", size = 12, vjust = 0.5)
+      plot.title = element_text(size = 24),
+      # plot.margin =unit(c(1,1,5,1), "lines"),  
+      legend.text = element_text(colour = "black", size = 10, vjust = 0.5)
     )
+  PlotCumm
   
-  return(UF.plot.cumul.pos)
+  
+  return(PlotCumm)
 }

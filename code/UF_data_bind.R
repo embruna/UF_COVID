@@ -1,10 +1,9 @@
+UF_data_bind<-function(blank) {
 ##############################3
 # Script to load the daily scraped files, join them together, 
 # join them sith some data collected prior to webscraping,
 # and graph
 library(tidyverse)
-library(rvest)
-library(RColorBrewer)
 
 ##############################################################
 ######## now join the archival data and scraped datasets
@@ -28,6 +27,10 @@ scrape$data_source<-"scrape"
 archive<-read_csv("./data_raw/googlesheet_import/UF_covid_data_20200818-20200907.csv") %>% 
   select(-X1) 
 archive
+
+missing.data<-read_csv("./data_raw/missing.data.dates.csv")
+
+archive<-bind_rows(archive,missing.data)
 
 corrected_date<-str_split(archive$update_date,"/")
 corrected_date<-data.frame(matrix(unlist(corrected_date), nrow=length(corrected_date), byrow=T))
@@ -59,6 +62,11 @@ missing_days$update_date<-corrected_date$correct_date
 missing_days$scrape_date<-as.Date(missing_days$scrape_date)
 missing_days$update_date<-as.Date(missing_days$update_date)
 missing_days$data_source<-"sk"
+
+# these dates are missing from the pre-scrape datasheet
+
+
+
 ############################################################
 # bind them up, split by group, and clean up titles, etc. 
 ############################################################
@@ -72,8 +80,6 @@ uf.data<-bind_rows(archive,scrape,missing_days)
 # and cumulative positive test %
 ############################################################
 
-
-
 uf.data.SHC.s<-uf.data %>% 
   select(update_date,testing_program,group,value.2,N) %>% 
   filter(testing_program=="SHCC") %>%
@@ -82,8 +88,6 @@ uf.data.SHC.s<-uf.data %>%
   arrange(update_date) %>% 
   rename(Npos=S.pos.SHC,Ntest=S.test.SHC)
 
-
-
 uf.data.RTC.fs<-uf.data %>% 
   select(update_date,testing_program,group,value.2,N) %>% 
   filter(testing_program=="RTC" & group=="fac.staff") %>%
@@ -91,7 +95,6 @@ uf.data.RTC.fs<-uf.data %>%
   select(-FS.percpos.RTC) %>% 
   arrange(update_date)%>% 
   rename(Npos=FS.pos.RTC,Ntest=FS.test.RTC)
-
 
 uf.data.RTC.s<-uf.data %>% 
   select(update_date,testing_program,group,value.2,N) %>% 
@@ -109,5 +112,29 @@ uf.data<-bind_rows(uf.data.RTC.s,uf.data.RTC.fs,uf.data.SHC.s) %>%
   mutate(cmtv.perc.pos=Npos/Ntest*100) 
 uf.data<-arrange(uf.data,group,update_date)
 
+uf.totals<-uf.data %>%
+  group_by(update_date) %>% 
+  summarize(Npos=sum(Npos),
+            Ntest=sum(Ntest),
+            new.tests=sum(new.tests),
+            new.pos=sum(new.pos)) %>% 
+  mutate(daily.pos=new.pos/new.tests*100) %>%
+  mutate(cmtv.perc.pos=cumsum(daily.pos))
+  
+uf.totals$group<-"UF Total"
+uf.totals$testing_program<-"SHCC+RTC"
+uf.totals$cat<-"UF Total"
+uf.data<-bind_rows(uf.data,uf.totals)
+
+uf.data<-uf.data %>%
+  mutate(cat=ifelse(testing_program=="SHCC","Students\n(SHCC)",cat)) %>% 
+  mutate(cat=ifelse(group=="students" & testing_program=="RTC","Students\n(RTC)",cat)) %>% 
+  mutate(cat=ifelse(group=="fac.staff" & testing_program=="RTC","Fac & Staff\n(RTC)",cat))  
+uf.data$group <- as.factor(uf.data$group)
+uf.data$testing_program <- as.factor(uf.data$testing_program)
+# uf.data$cat <- as.factor(uf.data$cat)
+
 #save as a csv file with the date 
 write_csv(uf.data,paste("./data_clean/UFcovid_data_",Sys.Date(),".csv",sep=""))
+return(uf.data)
+}

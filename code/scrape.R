@@ -1,12 +1,11 @@
-scrape<-function(UF_covid_page) {
+scrape<-function(blank) {
 
 ####################################################################################
 # Script to scrape data from UF Covid webiste and save day's results as a csv file
 ####################################################################################
 library(tidyverse)
 library(rvest)
-UF_covid_page <- UF_covid_page
-# UF_covid_page <- "https://coronavirus.ufhealth.org/screen-test-protect-2/about-initiative/testing-dashboard"
+UF_covid_page <- "https://coronavirus.ufhealth.org/screen-test-protect-2/about-initiative/testing-dashboard"
 UF_covid <- read_html(UF_covid_page)
 UF_covid
 # str(UF_covid)
@@ -72,17 +71,17 @@ UF_web_data$N<-as.numeric(UF_web_data$N)
 
 
 # convert date to date and put in proper format
-corrected_date<-str_split(UF_web_data$update_date,"/")
-corrected_date<-data.frame(matrix(unlist(corrected_date), nrow=length(corrected_date), byrow=T))
-corrected_date$X3<-2020
-corrected_date$X1<-paste(0,corrected_date$X1,sep="")
-corrected_date$X2<-as.numeric(as.character(corrected_date$X2))
-corrected_date <- corrected_date %>% 
-  mutate(X2=ifelse(X2<10,paste(0,X2,sep=""),X2)) %>% 
-  mutate(correct_date=paste(X3,X1,X2,sep="-"))
-corrected_date<-as.Date(corrected_date$correct_date)
-UF_web_data$update_date<-corrected_date
-
+# corrected_date<-str_split(UF_web_data$update_date,"/")
+# corrected_date<-data.frame(matrix(unlist(corrected_date), nrow=length(corrected_date), byrow=T))
+# corrected_date$X3<-2020
+# corrected_date$X1<-paste(0,corrected_date$X1,sep="")
+# corrected_date$X2<-as.numeric(as.character(corrected_date$X2))
+# corrected_date <- corrected_date %>% 
+#   mutate(X2=ifelse(X2<10,paste(0,X2,sep=""),X2)) %>% 
+#   mutate(correct_date=paste(X3,X1,X2,sep="-"))
+# corrected_date<-as.Date(corrected_date$correct_date)
+# UF_web_data$update_date<-corrected_date
+UF_web_data$update_date<-UF_web_data$scrape_date
 # Save as a CSV
 write.csv(UF_web_data,paste("./data_raw/daily_scrape/UF_covid_data_",Sys.Date(),".csv",sep=""))
 UF_web_data<-as.data.frame(UF_web_data)

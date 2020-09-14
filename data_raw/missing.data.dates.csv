@@ -1,0 +1,85 @@
+﻿update_date,value.2,N,value,testing_program,group
+8/22/20,FS.test.RTC,,Faculty and Staff Tested (Without Symptoms),RTC,fac.staff
+8/22/20,FS.pos.RTC,,Faculty and Staff Positive (Without Symptoms),RTC,fac.staff
+8/22/20,FS.percpos.RTC,,Percent Positive,RTC,fac.staff
+8/22/20,S.test.RTC,,Students Tested (Without Symptoms),RTC,students
+8/22/20,S.pos.RTC,,Students Positive (Without Symptoms),RTC,students
+8/22/20,S.percpos.RTC,,Percent Positive,RTC,students
+8/22/20,S.test.SHC,,Students With or Without Symptoms Tested for COVID-19,SHCC,students
+8/22/20,S.pos.SHC,,Students With or Without Symptoms Confirmed as Positive,SHCC,students
+8/22/20,S.percpos.SHC,,Percent Positive,SHCC,students
+8/22/20,UF.affil.cases,,Cases Identified and Followed Among UF Affiliates,contact.tracing,uf.affil
+8/22/20,contacts.followed,,Contacts of UF Affiliates Identified and Followed,contact.tracing,uf.affil
+8/22/20,UF.isol,,UF Affiliates or Contacts of UF Affiliates Currently in Isolation or Quarantine,contact.tracing,uf.affil
+8/22/20,UF.affil.back,,UF Affiliates Returned to Campus,contact.tracing,uf.affil
+8/19/20,FS.test.RTC,,Faculty and Staff Tested (Without Symptoms),RTC,fac.staff
+8/19/20,FS.pos.RTC,,Faculty and Staff Positive (Without Symptoms),RTC,fac.staff
+8/19/20,FS.percpos.RTC,,Percent Positive,RTC,fac.staff
+8/19/20,S.test.RTC,,Students Tested (Without Symptoms),RTC,students
+8/19/20,S.pos.RTC,,Students Positive (Without Symptoms),RTC,students
+8/19/20,S.percpos.RTC,,Percent Positive,RTC,students
+8/19/20,S.test.SHC,,Students With or Without Symptoms Tested for COVID-19,SHCC,students
+8/19/20,S.pos.SHC,,Students With or Without Symptoms Confirmed as Positive,SHCC,students
+8/19/20,S.percpos.SHC,,Percent Positive,SHCC,students
+8/19/20,UF.affil.cases,,Cases Identified and Followed Among UF Affiliates,contact.tracing,uf.affil
+8/19/20,contacts.followed,,Contacts of UF Affiliates Identified and Followed,contact.tracing,uf.affil
+8/19/20,UF.isol,,UF Affiliates or Contacts of UF Affiliates Currently in Isolation or Quarantine,contact.tracing,uf.affil
+8/19/20,UF.affil.back,,UF Affiliates Returned to Campus,contact.tracing,uf.affil
+8/21/20,FS.test.RTC,,Faculty and Staff Tested (Without Symptoms),RTC,fac.staff
+8/21/20,FS.pos.RTC,,Faculty and Staff Positive (Without Symptoms),RTC,fac.staff
+8/21/20,FS.percpos.RTC,,Percent Positive,RTC,fac.staff
+8/21/20,S.test.RTC,,Students Tested (Without Symptoms),RTC,students
+8/21/20,S.pos.RTC,,Students Positive (Without Symptoms),RTC,students
+8/21/20,S.percpos.RTC,,Percent Positive,RTC,students
+8/21/20,S.test.SHC,,Students With or Without Symptoms Tested for COVID-19,SHCC,students
+8/21/20,S.pos.SHC,,Students With or Without Symptoms Confirmed as Positive,SHCC,students
+8/21/20,S.percpos.SHC,,Percent Positive,SHCC,students
+8/21/20,UF.affil.cases,,Cases Identified and Followed Among UF Affiliates,contact.tracing,uf.affil
+8/21/20,contacts.followed,,Contacts of UF Affiliates Identified and Followed,contact.tracing,uf.affil
+8/21/20,UF.isol,,UF Affiliates or Contacts of UF Affiliates Currently in Isolation or Quarantine,contact.tracing,uf.affil
+8/21/20,UF.affil.back,,UF Affiliates Returned to Campus,contact.tracing,uf.affil
+8/23/20,FS.test.RTC,,Faculty and Staff Tested (Without Symptoms),RTC,fac.staff
+8/23/20,FS.pos.RTC,,Faculty and Staff Positive (Without Symptoms),RTC,fac.staff
+8/23/20,FS.percpos.RTC,,Percent Positive,RTC,fac.staff
+8/23/20,S.percpos.RTC,,Percent Positive,RTC,students
+8/23/20,S.percpos.SHC,,Percent Positive,SHCC,students
+8/23/20,UF.affil.cases,,Cases Identified and Followed Among UF Affiliates,contact.tracing,uf.affil
+8/23/20,contacts.followed,,Contacts of UF Affiliates Identified and Followed,contact.tracing,uf.affil
+8/23/20,UF.isol,,UF Affiliates or Contacts of UF Affiliates Currently in Isolation or Quarantine,contact.tracing,uf.affil
+8/23/20,UF.affil.back,,UF Affiliates Returned to Campus,contact.tracing,uf.affil
+8/24/20,FS.test.RTC,,Faculty and Staff Tested (Without Symptoms),RTC,fac.staff
+8/24/20,FS.pos.RTC,,Faculty and Staff Positive (Without Symptoms),RTC,fac.staff
+8/24/20,FS.percpos.RTC,,Percent Positive,RTC,fac.staff
+8/24/20,S.percpos.RTC,,Percent Positive,RTC,students
+8/24/20,S.percpos.SHC,,Percent Positive,SHCC,students
+8/24/20,UF.affil.cases,,Cases Identified and Followed Among UF Affiliates,contact.tracing,uf.affil
+8/24/20,contacts.followed,,Contacts of UF Affiliates Identified and Followed,contact.tracing,uf.affil
+8/24/20,UF.isol,,UF Affiliates or Contacts of UF Affiliates Currently in Isolation or Quarantine,contact.tracing,uf.affil
+8/24/20,UF.affil.back,,UF Affiliates Returned to Campus,contact.tracing,uf.affil
+8/26/20,FS.test.RTC,,Faculty and Staff Tested (Without Symptoms),RTC,fac.staff
+8/26/20,FS.pos.RTC,,Faculty and Staff Positive (Without Symptoms),RTC,fac.staff
+8/26/20,FS.percpos.RTC,,Percent Positive,RTC,fac.staff
+8/26/20,S.percpos.RTC,,Percent Positive,RTC,students
+8/26/20,S.percpos.SHC,,Percent Positive,SHCC,students
+8/26/20,UF.affil.cases,,Cases Identified and Followed Among UF Affiliates,contact.tracing,uf.affil
+8/26/20,contacts.followed,,Contacts of UF Affiliates Identified and Followed,contact.tracing,uf.affil
+8/26/20,UF.isol,,UF Affiliates or Contacts of UF Affiliates Currently in Isolation or Quarantine,contact.tracing,uf.affil
+8/26/20,UF.affil.back,,UF Affiliates Returned to Campus,contact.tracing,uf.affil
+8/27/20,FS.test.RTC,,Faculty and Staff Tested (Without Symptoms),RTC,fac.staff
+8/27/20,FS.pos.RTC,,Faculty and Staff Positive (Without Symptoms),RTC,fac.staff
+8/27/20,FS.percpos.RTC,,Percent Positive,RTC,fac.staff
+8/27/20,S.percpos.RTC,,Percent Positive,RTC,students
+8/27/20,S.percpos.SHC,,Percent Positive,SHCC,students
+8/27/20,UF.affil.cases,,Cases Identified and Followed Among UF Affiliates,contact.tracing,uf.affil
+8/27/20,contacts.followed,,Contacts of UF Affiliates Identified and Followed,contact.tracing,uf.affil
+8/27/20,UF.isol,,UF Affiliates or Contacts of UF Affiliates Currently in Isolation or Quarantine,contact.tracing,uf.affil
+8/27/20,UF.affil.back,,UF Affiliates Returned to Campus,contact.tracing,uf.affil
+9/5/20,FS.test.RTC,,Faculty and Staff Tested (Without Symptoms),RTC,fac.staff
+9/5/20,FS.pos.RTC,,Faculty and Staff Positive (Without Symptoms),RTC,fac.staff
+9/5/20,FS.percpos.RTC,,Percent Positive,RTC,fac.staff
+9/5/20,S.percpos.RTC,,Percent Positive,RTC,students
+9/5/20,S.percpos.SHC,,Percent Positive,SHCC,students
+9/5/20,UF.affil.cases,,Cases Identified and Followed Among UF Affiliates,contact.tracing,uf.affil
+9/5/20,contacts.followed,,Contacts of UF Affiliates Identified and Followed,contact.tracing,uf.affil
+9/5/20,UF.isol,,UF Affiliates or Contacts of UF Affiliates Currently in Isolation or Quarantine,contact.tracing,uf.affil
+9/5/20,UF.affil.back,,UF Affiliates Returned to Campus,contact.tracing,uf.affil
