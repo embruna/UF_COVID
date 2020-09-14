@@ -20,12 +20,13 @@ To generate a pdf with the graphs through today's date, open and knit ```UF_Covi
 
 2. UF posts daily data on UF affiliated cases at http://www.ufl.edu/articles/2020/09/covid-data.html.
 
+## Next Steps
+
+1. Here is a tutorial for [how to make a Hopkins-style Covid-dashboard](https://www.esri.com/arcgis-blog/products/ops-dashboard/health/arcgis-dashboards-training-videos-for-covid-19/), shouldf anyone have some spare time on their hands.
+
+
 ## DISCLAIMER
 
 The information presented is intended for educational and informational purposes only. This website and the visualizations presented was done as an exercise in programming and data management and should **not** be interpreted as official UF health statistics. Do not rely on the information presented here to make health or educational decisions. I make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability or completeness of any information on this site. This site is not affliated with UF, UF Health, or my employer. *Caveat emptor*.
 
 
-
-
-
-Here is a tutorial for [how to make a Hopkins-style Covid-dashboard](https://www.esri.com/arcgis-blog/products/ops-dashboard/health/arcgis-dashboards-training-videos-for-covid-19/), shouldf anyone have some spare time on their hands.
