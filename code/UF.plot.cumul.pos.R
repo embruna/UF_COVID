@@ -38,7 +38,7 @@ UF.plot.cumul.pos<-function(uf.data) {
       # shape = paste(testing_program, group, sep = " "))) +
       # scale_x_date(date_breaks = "1 day", date_labels = "%b %d") +
     scale_x_date(date_breaks = "1 day", date_labels = "%b %d",expand = c(.02, .09)) +
-    geom_line() +
+    geom_line(size=2) +
     # geom_line(data = filter(my_data, testing_program=="RTC" & group=="students")) +
     geom_line(data = filter(my_data, is.na(Npos)==FALSE), linetype = "dashed") +
     scale_shape_manual(values = c(15, 16, 17,18)) +
@@ -47,20 +47,23 @@ UF.plot.cumul.pos<-function(uf.data) {
     # geom_line(data = filter(gaps, group == "fac.staff" & testing_program == "RTC"), aes(group = gap.group), linetype = "dashed") +
     # geom_line(data = filter(gaps, group == "students" & testing_program == "RTC"), aes(group = gap.group), linetype = "dashed") +
     # geom_line(data = filter(gaps, group == "students" & testing_program == "SHCC"), aes(group = gap.group), linetype = "dashed") +
-    geom_point(size=3) +
-    geom_text(data = filter(my_data,cat=="UF Total"), aes(label = round(Npos, 1)), hjust = .9, vjust = -.7, size=8,show.legend = FALSE) +
-    geom_text(data = filter(my_data,cat!="UF Total"), aes(label = round(Npos, 1)), hjust = .6, vjust = -1, size=6,show.legend = FALSE) +
+    geom_point(size=1) +
+    geom_text(data = filter(my_data,cat=="UF Total"&update_date==max(update_date)), 
+              aes(label = round(Npos, 1)), nudge_y=30,nudge_x = -0.0, size=6,show.legend = FALSE) +
+    geom_text(data = filter(my_data,cat!="UF Total"&update_date==max(update_date)), 
+              aes(label = round(Npos, 1)), nudge_y = 30,nudge_x = -0.0, size=3,show.legend = FALSE) +
     # geom_text(aes(label = round(Npos, 1)), hjust = .6, vjust = -1, size=8,show.legend = FALSE) +
     # geom_text(aes(label = group), hjust = 1, vjust = -1, size=5) +
     # geom_text(data = filter(my_data, update_date==max(update_date)), aes(label=label), 
     #            nudge_x = -0.4, nudge_y=35, size=5, fontface="bold",show.legend = FALSE) +
     geom_text(data = filter(my_data, ((update_date==max(update_date) & cat=="UF Total"))), aes(label=cat),
-              nudge_x = -0.2, nudge_y=40, size=10,fontface="bold",show.legend = FALSE) +
+              nudge_x = -0.8, nudge_y=70, size=6,fontface="bold",show.legend = FALSE) +
     geom_text(data = filter(my_data, ((update_date==max(update_date) & cat!="UF Total"))), aes(label=cat),
-              nudge_x = -0.1, nudge_y=40, size=6,show.legend = FALSE) +
+              nudge_x = -0.3, nudge_y=70, size=3,show.legend = FALSE) +
     labs(x = "Date", y = "Cumulative Count") +
-    scale_y_continuous(limits = c(0, 800),breaks = seq(0,800, by=50),expand=c(0,0.2))+
-    labs(title = "UF - Cumulative Positive Tests (Reported)")
+    scale_y_continuous(limits = c(0, 1000),breaks = seq(0,1000, by=100),expand=c(0,0.2))+
+    ggtitle(label = "UF - Positive Tests since 6 May 2020",
+            subtitle = "Source: UF COVID19 Testing Dashboard")
   
   PlotCumm <- PlotCumm + theme_classic() +
     theme(
@@ -71,7 +74,9 @@ UF.plot.cumul.pos<-function(uf.data) {
       axis.text.y = element_text(size = 12),
       axis.title.x = element_text(colour = "black", size = 16),
       axis.title.y = element_text(colour = "black", size = 16),
-      plot.title = element_text(size = 24),
+      plot.title = element_text(size = 24,hjust = 0.5),
+      plot.subtitle = element_text(size = 14,hjust = 0.5),
+  
       # plot.margin =unit(c(1,1,5,1), "lines"),  
       legend.text = element_text(colour = "black", size = 10, vjust = 0.5)
     )
