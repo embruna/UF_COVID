@@ -27,7 +27,7 @@ The data used to generate these figures were extracted from [the UF Covid Dashbo
 ## Important Caveats
 
 1. Calculations of tests per day, positives per day, and positivity rate are based on the dates the data were *posted*. It is possible that data released on one day includes tests that were conducted over multiple days.
-
+UFdaily_plot
 2. UF posts daily data on UF affiliated cases at http://www.ufl.edu/articles/2020/09/covid-data.html.
 \newpage
 ```{r scrape, echo=FALSE,message = FALSE,warning=FALSE, cache=TRUE}
@@ -46,6 +46,13 @@ todays.data<-paste("./data_clean/UFcovid_data_",Sys.Date(),".csv",sep="")
 uf.data<-read.csv(todays.data)
 uf.data$update_date<-as.Date(uf.data$update_date)
 ```
+
+\newpage
+```{r UFDailyplot, echo=FALSE,message = FALSE,warning=FALSE, cache=TRUE}
+source("./code/UFDaily_plot.R")
+UFdaily_plot()
+```
+
 <!-- \newpage -->
 <!-- ```{r facstaff, message=FALSE, warning=FALSE, echo=FALSE} -->
 <!-- source("./code/facstaff_daily.R") -->
