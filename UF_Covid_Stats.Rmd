@@ -1,14 +1,11 @@
 ---
 title: "UF Covid Summary"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-output: pdf_document
-# output: html_document
-# header-includes:
-#   - \usepackage{pdflscape}
-#   - \newcommand{\blandscape}{\begin{landscape}}
-#   - \newcommand{\elandscape}{\end{landscape}}
-classoption: 
-   - landscape
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+classoption: landscape
 ---
 
 
@@ -24,24 +21,32 @@ library(gridExtra)
 
 The data used to generate these figures were extracted from [the UF Covid Dashboard](https://coronavirus.ufhealth.org/screen-test-protect-2/about-initiative/testing-dashboard/). All code and data can be found at [https://github.com/embruna/UF_COVID](https://github.com/embruna/UF_COVID).
 
-## Important Caveats
+## Additional information and Important Caveats
 
-1. Calculations of tests per day, positives per day, and positivity rate are based on the dates the data were *posted*. It is possible that data released on one day includes tests that were conducted over multiple days.
-UFdaily_plot
-2. UF posts daily data on UF affiliated cases at http://www.ufl.edu/articles/2020/09/covid-data.html.
+1. UF posts daily data on UF affiliated cases at http://www.ufl.edu/articles/2020/09/covid-data.html. A "UF Affiliate" appears to be anyone who has tested positive in Florida that has a UF ID number. They are identified by cross-matching the [UF Persons database](https://twitter.com/messages/19717244-39979971) with the Health Department database. The figures for UF-affiliates therefore include UF affiliates throughout the state, not just those in Alachua County. Additional Details can be found [here](https://coronavirus.ufl.edu/university-updates/august-18-covid-19-update-our-data-dashboard.html). The data for a particulkar day appear to be updated peridically as new infomration comes in [Thanks to D. Hutchinson for finding these resources].
+
+2. Calculations of tests per day, positives per day, and positivity rate are based on the dates the data were *posted*. It is possible that data released on one day includes tests that were conducted over multiple days.
+
+3. Faculty and staff who have been working remotely must be tested prior to retunring to campus (RTC Program). [Testing is optional for students](https://coronavirus.ufhealth.org/screen-test-protect-2/frequently-asked-questions/#screeningreturn). "Mandatory testing may be required for Students working in clinical or research settings involving contact with patients and / or human subjects or Athletes and other groups who cannot reliably either wear a face mask/cloth face covering or physically distance in their day-to-day activities.' [source](https://coronavirus.ufhealth.org/screen-test-protect-2/students/).
+
+
+
+## DISCLAIMER
+
+The information presented is intended for educational and informational purposes only. This website and the visualizations presented was done as an exercise in programming and data management and should not be interpreted as official UF health statistics. Do not rely on the information presented here to make health or educational decisions. I make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability or completeness of any information on this site. This site is not affliated with UF, UF Health, or my employer. Caveat emptor.
 \newpage
 ```{r scrape, echo=FALSE,message = FALSE,warning=FALSE, cache=TRUE}
 source("./code/scrape.R")
 scrape<-scrape()
 ```
 
-```{r bind, echo=FALSE,message = FALSE,warning=FALSE,cache=TRUE}
+```{r bind, echo=FALSE,message = FALSE,warning=FALSE}
 source("./code/UF_data_bind.R")
-uf.data<-UF_data_bind()
+data_local<-UF_data_bind()
 ```
 
 ```{r LoadData, echo=FALSE,message = FALSE,cache=TRUE}
-#save as a csv file with the date 
+#save as a csv file with the date
 todays.data<-paste("./data_clean/UFcovid_data_",Sys.Date(),".csv",sep="")
 uf.data<-read.csv(todays.data)
 uf.data$update_date<-as.Date(uf.data$update_date)
@@ -72,16 +77,16 @@ UFdaily_plot()
 <!-- \blandscape -->
 ```{r daily.pos.fig, message=FALSE, warning=FALSE, echo=FALSE,fig.height = 6.5,fig.width=10}
 source("./code/UF.plot.daily.R")
-UF.plot.daily(uf.data)
+UF.plot.daily(data_local)
 ```
 NB: The increase in faculty/staff due to 1 positive from 3 tests
 \newpage
 ```{r daily.n.fig,message=FALSE,warning=FALSE,echo=FALSE,fig.height = 6.5,fig.width=10}
 source("./code/UF.plot.daily.tests.R")
-UF.plot.daily.tests(uf.data)
+UF.plot.daily.tests(data_local)
 ```
 \newpage
 ```{r cumulative.pos.fig, message=FALSE,warning=FALSE,echo=FALSE,fig.height = 6.5,fig.width=10}
 source("./code/UF.plot.cumul.pos.R")
-UF.plot.cumul.pos(uf.data)
+UF.plot.cumul.pos(data_local)
 ```

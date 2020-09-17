@@ -49,19 +49,41 @@ UF.plot.cumul.pos<-function(uf.data) {
     # geom_line(data = filter(gaps, group == "students" & testing_program == "SHCC"), aes(group = gap.group), linetype = "dashed") +
     geom_point(size=1) +
     geom_text(data = filter(my_data,cat=="UF Total"&update_date==max(update_date)), 
-              aes(label = round(Npos, 1)), nudge_y=30,nudge_x = -0.0, size=6,show.legend = FALSE) +
-    geom_text(data = filter(my_data,cat!="UF Total"&update_date==max(update_date)), 
+              aes(label = round(Npos, 1)), nudge_y=30,nudge_x = 0.03, size=6,show.legend = FALSE) +
+    # geom_text(data = filter(my_data,cat!="UF Total"&update_date==max(update_date)),
+    #           aes(label = round(Npos, 1)), nudge_y = 30,nudge_x = -0.0, size=3,show.legend = FALSE) +
+    
+    geom_text(data = filter(my_data,testing_program=="RTC" &  group=="students" & update_date==max(update_date)),
+              aes(label = round(Npos, 1)), nudge_y = -75,nudge_x = -0.0, size=3,show.legend = FALSE) +
+    
+    geom_text(data = filter(my_data,testing_program=="RTC" &  group=="fac.staff" & update_date==max(update_date)),
+              aes(label = round(Npos, 1)), nudge_y = 30,nudge_x = -0, size=3,show.legend = FALSE) +
+    
+    geom_text(data = filter(my_data,testing_program=="SHCC" &  group=="students" & update_date==max(update_date)),
               aes(label = round(Npos, 1)), nudge_y = 30,nudge_x = -0.0, size=3,show.legend = FALSE) +
+    
     # geom_text(aes(label = round(Npos, 1)), hjust = .6, vjust = -1, size=8,show.legend = FALSE) +
     # geom_text(aes(label = group), hjust = 1, vjust = -1, size=5) +
     # geom_text(data = filter(my_data, update_date==max(update_date)), aes(label=label), 
     #            nudge_x = -0.4, nudge_y=35, size=5, fontface="bold",show.legend = FALSE) +
     geom_text(data = filter(my_data, ((update_date==max(update_date) & cat=="UF Total"))), aes(label=cat),
               nudge_x = -0.8, nudge_y=70, size=6,fontface="bold",show.legend = FALSE) +
-    geom_text(data = filter(my_data, ((update_date==max(update_date) & cat!="UF Total"))), aes(label=cat),
-              nudge_x = -0.3, nudge_y=70, size=3,show.legend = FALSE) +
+    
+    geom_text(data = filter(my_data,testing_program=="RTC" &  group=="students" & update_date==max(update_date)),
+              aes(label = cat), nudge_y = -120,nudge_x = -0.4, size=3,show.legend = FALSE) +
+    
+    geom_text(data = filter(my_data,testing_program=="RTC" &  group=="fac.staff" & update_date==max(update_date)),
+              aes(label = cat), nudge_y = 80,nudge_x = -0.4, size=3,show.legend = FALSE) +
+    
+    geom_text(data = filter(my_data,testing_program=="SHCC" &  group=="students" & update_date==max(update_date)),
+              aes(label = cat), nudge_y = 90,nudge_x = -0.4, size=3,show.legend = FALSE) +
+    
+    
+    
+    # geom_text(data = filter(my_data, ((update_date==max(update_date) & cat!="UF Total"))), aes(label=cat),
+    #           nudge_x = -0.3, nudge_y=70, size=3,show.legend = FALSE) +
     labs(x = "Date", y = "Cumulative Count") +
-    scale_y_continuous(limits = c(0, 1000),breaks = seq(0,1000, by=100),expand=c(0,0.2))+
+    scale_y_continuous(limits = c(0, 1100),breaks = seq(0,1000, by=100),expand=c(0,0.2))+
     ggtitle(label = "UF - Positive Tests since 6 May 2020",
             subtitle = "Source: UF COVID19 Testing Dashboard")
   
