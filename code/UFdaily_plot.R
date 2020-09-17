@@ -1,7 +1,6 @@
-UFdaily_plot<-function() {
+UFdaily_plot<-function(UF_daily) {
 
 library(tidyverse)
-UF_daily<-read_csv("./data_raw/UF_cases_per_day.csv")
 
 corrected_date<-str_split(UF_daily$update_date,"/")
 corrected_date<-data.frame(matrix(unlist(corrected_date), nrow=length(corrected_date), byrow=T))
