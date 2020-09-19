@@ -1,9 +1,9 @@
-UF.plot.daily<-function(uf.data) {
-
+UF.plot.daily<-function(input) {
+# input<-uf.data
 # becauser there are some days with no data (weekends, etc)
 # there will be breaks in the line. This patches the breaks with a 
 # dashed line
-my_data<-uf.data %>%
+my_data<-input %>%
   arrange(testing_program,group,update_date) %>% 
   group_by(testing_program,group) %>% 
   mutate(keep=ifelse(is.na(daily.pos)&lag(is.na(daily.pos)==TRUE),"del","keep")) %>% 

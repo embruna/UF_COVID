@@ -1,10 +1,10 @@
 ---
 title: "UF Covid Summary"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-output:
-  html_document:
-    df_print: paged
-  pdf_document: default
+output: pdf_document
+  # html_document:
+  #   df_print: paged
+  # pdf_document: default
 classoption: landscape
 ---
 
@@ -35,27 +35,28 @@ The data used to generate these figures were extracted from [the UF Covid Dashbo
 
 The information presented is intended for educational and informational purposes only. This website and the visualizations presented was done as an exercise in programming and data management and should not be interpreted as official UF health statistics. Do not rely on the information presented here to make health or educational decisions. I make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability or completeness of any information on this site. This site is not affliated with UF, UF Health, or my employer. Caveat emptor.
 \newpage
-```{r scrape, echo=FALSE,message = FALSE,warning=FALSE, cache=TRUE}
+```{r scrape, echo=FALSE,message = FALSE,warning=FALSE, cache=FALSE}
 source("./code/scrape.R")
 scrape<-scrape()
 ```
 
-```{r bind, echo=FALSE,message = FALSE,warning=FALSE}
+```{r bind, echo=FALSE,message = FALSE,warning=FALSE, cache=FALSE}
 source("./code/UF_data_bind.R")
-data_local<-UF_data_bind()
+bind<-UF_data_bind()
 ```
 
-```{r LoadData, echo=FALSE,message = FALSE,cache=TRUE}
-#save as a csv file with the date
-todays.data<-paste("./data_clean/UFcovid_data_",Sys.Date(),".csv",sep="")
-uf.data<-read.csv(todays.data)
-uf.data$update_date<-as.Date(uf.data$update_date)
-```
+<!-- ```{r LoadData, echo=FALSE,message = FALSE,cache=TRUE} -->
+<!-- #save as a csv file with the date -->
+<!-- todays.data<-paste("./data_clean/UFcovid_data_",Sys.Date(),".csv",sep="") -->
+<!-- uf.data<-read.csv(todays.data) -->
+<!-- uf.data$update_date<-as.Date(uf.data$update_date) -->
+<!-- ``` -->
 
 \newpage
-```{r UFDailyplot, echo=FALSE,message = FALSE,warning=FALSE, cache=TRUE}
+```{r UFDailyplot, echo=FALSE,message = FALSE,warning=FALSE}
+UF_daily<-read_csv("./data_raw/UF_cases_per_day.csv")
 source("./code/UFDaily_plot.R")
-UFdaily_plot()
+UFdaily_plot(UF_daily)
 ```
 
 <!-- \newpage -->
@@ -77,16 +78,16 @@ UFdaily_plot()
 <!-- \blandscape -->
 ```{r daily.pos.fig, message=FALSE, warning=FALSE, echo=FALSE,fig.height = 6.5,fig.width=10}
 source("./code/UF.plot.daily.R")
-UF.plot.daily(data_local)
+UF.plot.daily(bind)
 ```
-NB: The increase in faculty/staff due to 1 positive from 3 tests
+
 \newpage
 ```{r daily.n.fig,message=FALSE,warning=FALSE,echo=FALSE,fig.height = 6.5,fig.width=10}
 source("./code/UF.plot.daily.tests.R")
-UF.plot.daily.tests(data_local)
+UF.plot.daily.tests(bind)
 ```
 \newpage
 ```{r cumulative.pos.fig, message=FALSE,warning=FALSE,echo=FALSE,fig.height = 6.5,fig.width=10}
 source("./code/UF.plot.cumul.pos.R")
-UF.plot.cumul.pos(data_local)
+UF.plot.cumul.pos(bind)
 ```
