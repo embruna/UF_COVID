@@ -49,12 +49,12 @@ UF.plot.cumul.pos<-function(input) {
     # geom_line(data = filter(gaps, group == "students" & testing_program == "SHCC"), aes(group = gap.group), linetype = "dashed") +
     geom_point(size=1) +
     geom_text(data = filter(my_data,cat=="UF Total"&update_date==max(update_date)), 
-              aes(label = round(Npos, 1)), nudge_y=30,nudge_x = -0.9, size=6,show.legend = FALSE) +
+              aes(label = round(Npos, 1)), nudge_y=45,nudge_x = -0.95, size=5,show.legend = FALSE) +
     # geom_text(data = filter(my_data,cat!="UF Total"&update_date==max(update_date)),
     #           aes(label = round(Npos, 1)), nudge_y = 30,nudge_x = -0.0, size=3,show.legend = FALSE) +
     
     geom_text(data = filter(my_data,testing_program=="RTC" &  group=="students" & update_date==max(update_date)),
-              aes(label = round(Npos, 1)), nudge_y = 20,nudge_x = -0.0, size=3,show.legend = FALSE) +
+              aes(label = round(Npos, 1)), nudge_y = 30,nudge_x = -0.0, size=3,show.legend = FALSE) +
     
     geom_text(data = filter(my_data,testing_program=="RTC" &  group=="fac.staff" & update_date==max(update_date)),
               aes(label = round(Npos, 1)), nudge_y = 30,nudge_x = -0, size=3,show.legend = FALSE) +
@@ -67,13 +67,13 @@ UF.plot.cumul.pos<-function(input) {
     # geom_text(data = filter(my_data, update_date==max(update_date)), aes(label=label), 
     #            nudge_x = -0.4, nudge_y=35, size=5, fontface="bold",show.legend = FALSE) +
     geom_text(data = filter(my_data, ((update_date==max(update_date) & cat=="UF Total"))), aes(label=cat),
-              nudge_x = -0.9, nudge_y=90, size=6,fontface="bold",show.legend = FALSE) +
+              nudge_x = -0.9, nudge_y=100, size=5,fontface="bold",show.legend = FALSE) +
     
     geom_text(data = filter(my_data,testing_program=="RTC" &  group=="students" & update_date==max(update_date)),
-              aes(label = cat), nudge_y = 85,nudge_x = -0.4, size=3,show.legend = FALSE) +
+              aes(label = cat), nudge_y = 100,nudge_x = -0.4, size=3,show.legend = FALSE) +
     
     geom_text(data = filter(my_data,testing_program=="RTC" &  group=="fac.staff" & update_date==max(update_date)),
-              aes(label = cat), nudge_y = 90,nudge_x = -0.4, size=3,show.legend = FALSE) +
+              aes(label = cat), nudge_y = 95,nudge_x = -0.4, size=3,show.legend = FALSE) +
     
     geom_text(data = filter(my_data,testing_program=="SHCC" &  group=="students" & update_date==max(update_date)),
               aes(label = cat), nudge_y = -100,nudge_x = -0.4, size=3,show.legend = FALSE) +

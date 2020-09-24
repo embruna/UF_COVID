@@ -17,12 +17,16 @@ UF_daily$update_date<-as.Date(UF_daily$update_date)
 UF_daily<-UF_daily %>% 
   mutate(cumulative=cumsum(cases))
 
+# total cases (cumulative), UF community 
+# total<-sum(UF_daily$cases)
+# or max(UF_daily$cumulative)
 
 # The plot
 UFdaily_plot <- ggplot(UF_daily, aes(update_date, cases)) +
   ggtitle("UF-affiliated cases identified each day") +
   xlab("Date of Disease Onset") + ylab("Number of Cases") +
   geom_bar(stat="identity", colour="#0021A5",fill="#0021A5")+
+  annotate("text", x=min(UF_daily$update_date)+70, y=max(UF_daily$cases)-50, label= paste("Total Cases for the UF Community\nsince 18-March-2020: ", max(UF_daily$cumulative),sep="")) + 
   # geom_line(aes(x=update_date,y=cumulative, color="#FA4616"),size=1.5) +
   scale_x_date(date_breaks = "15 day", date_labels = "%b %d",expand = c(0, .9))
 

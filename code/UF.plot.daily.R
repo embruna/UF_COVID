@@ -64,10 +64,10 @@ UF.plot.daily <- ggplot(
   # scale_color_brewer(palette = "Dark2") +
   scale_shape_manual(values = c(15, 16, 17)) +
   scale_color_manual(values = c("blue4","coral3", "darkred"))+
-  geom_text(aes(label = paste(round(value, 1),"%",sep="")), hjust = 0.6, vjust = -1, show.legend = FALSE, size=4) +
+  geom_text(aes(label = paste(round(value, 1),"%",sep="")), hjust = 0.6, vjust = -1, show.legend = FALSE, size=2) +
   # geom_text(aes(label = paste(round(value, 1),"%",sep="")), hjust = 0.6, vjust = -1, show.legend = FALSE) +
   labs(x = "Date", y = "Percent Positive (Daily)") +
-  scale_y_continuous(limits = c(0, 100),breaks = seq(0,100, by=10),expand=c(0,0.1))+
+  scale_y_continuous(limits = c(0, 120),breaks = seq(0,100, by=10),expand=c(0,0.1))+
   ggtitle(label = "UF - Positive tests per day (%)",
           subtitle = "Source: UF COVID19 Testing Dashboard")
 
