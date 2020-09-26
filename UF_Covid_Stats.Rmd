@@ -27,7 +27,7 @@ The data used to generate these figures were extracted from [the UF Covid Dashbo
 
 2. Calculations of tests per day, positives per day, and positivity rate are based on the dates the data were *posted*. It is possible that data released on one day includes tests that were conducted over multiple days.
 
-3. Faculty and staff who have been working remotely must be tested prior to retunring to campus (RTC Program). [Testing is optional for students](https://coronavirus.ufhealth.org/screen-test-protect-2/frequently-asked-questions/#screeningreturn). "Mandatory testing may be required for Students working in clinical or research settings involving contact with patients and / or human subjects or Athletes and other groups who cannot reliably either wear a face mask/cloth face covering or physically distance in their day-to-day activities.' [source](https://coronavirus.ufhealth.org/screen-test-protect-2/students/).
+3. Faculty and staff who have been working remotely must be tested prior to returning to campus (RTC Program). [Testing is optional for students](https://coronavirus.ufhealth.org/screen-test-protect-2/frequently-asked-questions/#screeningreturn). "Mandatory testing may be required for Students working in clinical or research settings involving contact with patients and / or human subjects or Athletes and other groups who cannot reliably either wear a face mask/cloth face covering or physically distance in their day-to-day activities.' [source](https://coronavirus.ufhealth.org/screen-test-protect-2/students/).
 
 
 
@@ -45,13 +45,6 @@ source("./code/UF_data_bind.R")
 bind<-UF_data_bind()
 ```
 
-<!-- ```{r LoadData, echo=FALSE,message = FALSE,cache=TRUE} -->
-<!-- #save as a csv file with the date -->
-<!-- todays.data<-paste("./data_clean/UFcovid_data_",Sys.Date(),".csv",sep="") -->
-<!-- uf.data<-read.csv(todays.data) -->
-<!-- uf.data$update_date<-as.Date(uf.data$update_date) -->
-<!-- ``` -->
-
 \newpage
 ```{r UFDailyplot, echo=FALSE,message = FALSE,warning=FALSE}
 UF_daily<-read_csv("./data_raw/UF_cases_per_day.csv")
@@ -59,23 +52,6 @@ source("./code/UFDaily_plot.R")
 UFdaily_plot(UF_daily)
 ```
 
-<!-- \newpage -->
-<!-- ```{r facstaff, message=FALSE, warning=FALSE, echo=FALSE} -->
-<!-- source("./code/facstaff_daily.R") -->
-<!-- fs<-facstaff_daily(uf.data) -->
-<!-- fs[1] -->
-<!-- fs[2] -->
-<!-- ``` -->
-
-<!-- <!-- \newpage --> -->
-<!-- ```{r student, message=FALSE, warning=FALSE, echo=FALSE,fig.height = 7,fig.width=10} -->
-<!-- source("./code/student_daily.R") -->
-<!-- s<-student_daily(uf.data) -->
-<!-- s[1] -->
-<!-- s[2] -->
-<!-- ``` -->
-
-<!-- \blandscape -->
 ```{r daily.pos.fig, message=FALSE, warning=FALSE, echo=FALSE,fig.height = 6.5,fig.width=10}
 source("./code/UF.plot.daily.R")
 UF.plot.daily(bind)
