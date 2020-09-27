@@ -83,7 +83,7 @@ UF.plot.cumul.pos<-function(input) {
     # geom_text(data = filter(my_data, ((update_date==max(update_date) & cat!="UF Total"))), aes(label=cat),
     #           nudge_x = -0.3, nudge_y=70, size=3,show.legend = FALSE) +
     labs(x = "Date", y = "Cumulative Count") +
-    scale_y_continuous(limits = c(0, 1500),breaks = seq(0,1500, by=150),expand=c(0,0.2))+
+    scale_y_continuous(limits = c(0, 1650),breaks = seq(0,1650, by=150),expand=c(0,0.2))+
     ggtitle(label = "UF - Positive Tests since 6 May 2020",
             subtitle = "Source: UF COVID19 Testing Dashboard")
   
