@@ -1,0 +1,14 @@
+"","scrape_date","scrape_time","update_date","testing_program","group","value","value.2","N"
+"1",2020-10-07,"09:10:42",2020-10-07,"RTC","fac.staff","Faculty and Staff Tested (With and Without Symptoms)","FS.test.RTC",12655
+"2",2020-10-07,"09:10:42",2020-10-07,"RTC","fac.staff","Faculty and Staff Positive (With and Without Symptoms)","FS.pos.RTC",64
+"3",2020-10-07,"09:10:42",2020-10-07,"RTC","fac.staff","Percent Positive","FS.percpos.RTC",0.51
+"4",2020-10-07,"09:10:42",2020-10-07,"RTC","students","Students Tested (With and Without Symptoms)","S.test.RTC",16057
+"5",2020-10-07,"09:10:42",2020-10-07,"RTC","students","Students Positive (With and Without Symptoms)","S.pos.RTC",853
+"6",2020-10-07,"09:10:42",2020-10-07,"RTC","students","Percent Positive","S.percpos.RTC",5.31
+"7",2020-10-07,"09:10:42",2020-10-07,"SHCC","students","Students With or Without Symptoms Tested for COVID-19","S.test.SHC",2268
+"8",2020-10-07,"09:10:42",2020-10-07,"SHCC","students","Students With or Without Symptoms Confirmed as Positive","S.pos.SHC",574
+"9",2020-10-07,"09:10:42",2020-10-07,"SHCC","students","Percent Positive","S.percpos.SHC",25.3
+"10",2020-10-07,"09:10:42",2020-10-07,"contact.tracing","uf.affil","Cases Identified and Followed Among UF Affiliates","UF.affil.cases",3059
+"11",2020-10-07,"09:10:42",2020-10-07,"contact.tracing","uf.affil","Contacts of UF Affiliates Identified and Followed","contacts.followed",2419
+"12",2020-10-07,"09:10:42",2020-10-07,"contact.tracing","uf.affil","UF Affiliates or Contacts of UF Affiliates Currently in Isolation or Quarantine","UF.isol",372
+"13",2020-10-07,"09:10:42",2020-10-07,"contact.tracing","uf.affil","UF Affiliates Returned to Campus","UF.affil.back",5106

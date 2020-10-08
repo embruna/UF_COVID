@@ -16,7 +16,7 @@ UF_daily$update_date<-as.Date(UF_daily$update_date)
 
 UF_daily<-UF_daily %>% 
   mutate(cumulative=cumsum(cases))
-
+UF_daily<-na.omit(UF_daily)
 # total cases (cumulative), UF community 
 # total<-sum(UF_daily$cases)
 # or max(UF_daily$cumulative)
