@@ -52,15 +52,20 @@ source("./code/UFDaily_plot.R")
 UFdaily_plot(UF_daily)
 ```
 
-```{r daily.pos.fig, message=FALSE, warning=FALSE, echo=FALSE,fig.height = 6.5,fig.width=10}
-source("./code/UF.plot.daily.R")
-UF.plot.daily(bind)
-```
+<!-- ```{r daily.pos.fig, message=FALSE, warning=FALSE, echo=FALSE,fig.height = 6.5,fig.width=10} -->
+<!-- source("./code/UF.plot.daily.R") -->
+<!-- UF.plot.daily(bind) -->
+<!-- ``` -->
 
 \newpage
-```{r daily.n.fig,message=FALSE,warning=FALSE,echo=FALSE,fig.height = 6.5,fig.width=10}
-source("./code/UF.plot.daily.tests.R")
-UF.plot.daily.tests(bind)
+```{r daily.n.FS.fig,message=FALSE,warning=FALSE,echo=FALSE,fig.height = 6.5,fig.width=10}
+source("./code/UF.plot.daily.tests.FS.R")
+UF.plot.daily.tests.FS(bind)
+```
+\newpage
+```{r daily.n.student.fig,message=FALSE,warning=FALSE,echo=FALSE,fig.height = 6.5,fig.width=10}
+source("./code/UF.plot.daily.tests.students.R")
+UF.plot.daily.tests.students(bind)
 ```
 \newpage
 ```{r cumulative.pos.fig, message=FALSE,warning=FALSE,echo=FALSE,fig.height = 6.5,fig.width=10}
